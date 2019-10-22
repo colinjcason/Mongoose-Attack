@@ -27,6 +27,31 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines
 
 mongoose.connect(MONGODB_URI);
 
+// GET route for scraping Hombrewers Association site
+app.get("/", function(req, res) {
+    axios.get("http://www.echojs.com/").then(function(response) {
+        // https://www.homebrewersassociation.org/category/news/
+        var $ = cheerio.load(response.data);
+
+        $("article h2").each(function(i, element) {
+            var result = {};
+
+            // add the text, image, and href of every link and save them to result object
+            result.title = $(this).children("a").text();
+            result.link = $(this).children("a").attr("href");
+
+            // create a new article using the result object
+            db.Article.create(result)
+            .then(function(dbArticle) {
+                console.log(dbArticle);
+            }).catch(function(err) {
+                console.log(err);
+            });
+        });
+        res.send("index");
+    });
+});
+
 
 
 app.listen(PORT, function() {
