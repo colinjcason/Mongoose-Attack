@@ -1,6 +1,37 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Homebrew Scraper</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Saved Article</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">
+          <button type="button" class="btn btn-danger">Scrape New Articles!</button></a>
+      </li>
+       <li class="nav-item">
+        <a class="nav-link" href="#">
+          <button type="button" class="btn btn-danger">Clear Articles!</button></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
 <div id="wrapper">
-      <h1>Note Scraper</h1>
-      <h2><i>If you can do this...the homework should be no problem.</i></h2>
+      <h1>Homebrew Scraper</h1>
+      <h2><i>All the best homebrewing news and articles in one place!</i></h2>
       <div id="articles"></div>
       <div id="notes"></div>
+      <ul>
+        {{#each article}}
+        <li>{{this.title}}</li>
+        <li>{{this.link}}</li>
+        {{/each}}
+      </ul>
     </div>
