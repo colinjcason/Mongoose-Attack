@@ -23,15 +23,19 @@
   </div>
 </nav>
 
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Homebrew Scraper</h1>
+    <p class="lead">All the best homebrewing news and articles in one place!</p>
+  </div>
+</div>
+
 <div id="wrapper">
-      <h1>Homebrew Scraper</h1>
-      <h2><i>All the best homebrewing news and articles in one place!</i></h2>
-      <div id="articles"></div>
-      <div id="notes"></div>
       <ul>
-        {{#each article}}
-        <li>{{this.title}}</li>
-        <li>{{this.link}}</li>
+        {{#each articles}}
+        <li>{{title}}</li>
+        <li>{{link}}</li>
+        <li> <img src="{{img}}" alt="some shit">shit</li>
         {{/each}}
       </ul>
     </div>
