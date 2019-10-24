@@ -65,15 +65,15 @@ app.get("/", function (req, res) {
     });
 });
 
-app.get("/articles", function (req, res) {
-    db.Article.find({})
-        .then(function (Article) {
-            res.render("index", {articles: Article});
-        })
-        .catch(function (err) {
-            res.json(err);
-        });
-});
+// app.get("/articles", function (req, res) {
+//     db.Article.find({})
+//         .then(function (Article) {
+//             res.render("index", {articles: Article});
+//         })
+//         .catch(function (err) {
+//             res.json(err);
+//         });
+// });
 
 app.get("/clear", function (req, res) {
     db.Article.remove({})
