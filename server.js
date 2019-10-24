@@ -75,7 +75,7 @@ app.get("/", function (req, res) {
 //         });
 // });
 
-app.get("/clear", function (req, res) {
+app.get("/clear", function (req, res) { 
     db.Article.remove({})
         .then(function (data) {
             console.log("clearing articles");
@@ -83,7 +83,7 @@ app.get("/clear", function (req, res) {
         .catch(function (err) {
             console.log(err);
         });
-    res.redirect("/");
+    res.render("index");
 });
 
 
