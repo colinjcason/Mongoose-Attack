@@ -7,7 +7,7 @@ var cheerio = require("cheerio");
 // require all models
 var db = require("./models");
 
-var PORT = 3000;
+var PORT =  process.env.PORT || 3000;
 
 // initialize Express
 var app = express();
@@ -64,16 +64,6 @@ app.get("/", function (req, res) {
         res.render("index", {articles: articles});
     });
 });
-
-// app.get("/articles", function (req, res) {
-//     db.Article.find({})
-//         .then(function (Article) {
-//             res.render("index", {articles: Article});
-//         })
-//         .catch(function (err) {
-//             res.json(err);
-//         });
-// });
 
 app.get("/clear", function (req, res) { 
     db.Article.remove({})

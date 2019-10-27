@@ -30,7 +30,6 @@
   </div>
 </div>
 
-
 <div class="card" style="max-width: 18rem;">
     {{#each articles}}
   <img src="{{img}}" class="card-img-top" alt="image of a homebrewer">
@@ -38,7 +37,33 @@
     <h5 class="card-title">{{title}}</h5>
     <p class="card-text"></p>
     <a href="{{link}}" target="_blank" class="btn btn-primary">Read Article</a>
-    <button id="save-btn" type="button" class="btn btn-success">Save Article</button>
+    <button id="save-btn" type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">Create a Comment</button>
   </div>
   {{/each}}
+</div>
+
+{{!-- Comment modal --}}
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Save a comment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Comment:</label>
+            <textarea class="form-control" id="comment-text"></textarea>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save Comment</button>
+      </div>
+    </div>
+  </div>
 </div>
