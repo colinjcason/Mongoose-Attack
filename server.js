@@ -66,11 +66,11 @@ app.get("/", function (req, res) {
 });
 
 // POST route to post a note to an article
-app.post("/notes", function(req, res) {
+app.post("/notes/:id", function(req, res) {
     db.Note.create(req.body)
     .then(dbNote => {
-        console.log(dbNote);
-        return db.Article.findOneAndUpdate({ _id: req.params.id}, {note: dbNote._id}, {new: true});
+        // console.log(dbNote);
+        return db.Article.findOneAndUpdate({ _id: req.params.id}, {$push: {note: dbNote._id}}, {new: true});
     })
     .then(dbArticle => {
         res.json(dbArticle);
@@ -88,7 +88,7 @@ app.get("/articles/:id", function(req, res) {
         res.json(dbArticle);
     })
     .catch(err => {
-        res.json(err);
+        console.log(err);
     });
 });
 
@@ -96,7 +96,7 @@ app.get("/articles/:id", function(req, res) {
 // route for clearing all articles
 app.get("/clear", function (req, res) { 
     db.Article.remove({})
-        .then(function (data) {
+        .then(data => {
             console.log("clearing articles");
         })
         .catch(function (err) {
