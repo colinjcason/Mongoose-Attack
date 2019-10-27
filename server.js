@@ -65,6 +65,35 @@ app.get("/", function (req, res) {
     });
 });
 
+// POST route to post a note to an article
+app.post("/notes", function(req, res) {
+    db.Note.create(req.body)
+    .then(dbNote => {
+        console.log(dbNote);
+        return db.Article.findOneAndUpdate({ _id: req.params.id}, {note: dbNote._id}, {new: true});
+    })
+    .then(dbArticle => {
+        res.json(dbArticle);
+    })
+    .catch(err => {
+        res.json(err);
+    });
+});
+
+// find a specific article and its associated notes
+app.get("/articles/:id", function(req, res) {
+    db.Article.findOne({_id: req.params.id})
+    .populate("note")
+    .then(dbArticle => {
+        res.json(dbArticle);
+    })
+    .catch(err => {
+        res.json(err);
+    });
+});
+
+
+// route for clearing all articles
 app.get("/clear", function (req, res) { 
     db.Article.remove({})
         .then(function (data) {
@@ -76,8 +105,18 @@ app.get("/clear", function (req, res) {
     res.render("index");
 });
 
+// testing routes
 app.get("/articles", function(req, res) {
     db.Article.find({})
+    .then(function(data) {
+        res.json(data);
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+// testing routes
+app.get("/notes", function(req, res) {
+    db.Note.find({})
     .then(function(data) {
         res.json(data);
     }).catch(function(err) {
