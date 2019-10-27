@@ -76,6 +76,17 @@ app.get("/clear", function (req, res) {
     res.render("index");
 });
 
+app.get("/articles", function(req, res) {
+    db.Article.find({})
+    .then(function(data) {
+        res.json(data);
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+
+
 
 
 app.listen(PORT, function () {
